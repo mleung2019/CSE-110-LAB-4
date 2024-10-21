@@ -14,7 +14,12 @@ const AddExpenseForm = () => {
     event.preventDefault();
 
     // Exercise: Add add new expense to expenses context array
-    const id = expenses.length + 1;
+    let id: Number;
+    if (expenses.length) {
+      id = Number(expenses[expenses.length - 1].id) + 1;
+    } else {
+      id = 1;
+    }
     const newExpense: Expense = {
       id: id.toString(),
       name: name,
