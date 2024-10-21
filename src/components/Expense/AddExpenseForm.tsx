@@ -38,6 +38,7 @@ const AddExpenseForm = () => {
             type="text"
             className="form-control"
             id="name"
+            data-testid="name"
             value={name}
             // HINT: onChange={}
             onChange={(e) => setName(e.target.value)}
@@ -50,6 +51,7 @@ const AddExpenseForm = () => {
             type="text"
             className="form-control"
             id="cost"
+            data-testid="cost"
             value={cost}
             // HINT: onChange={}
             onChange={(e) => setCost(Number(e.target.value))}
