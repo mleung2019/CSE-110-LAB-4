@@ -54,7 +54,12 @@ const AddExpenseForm = () => {
             data-testid="cost"
             value={cost}
             // HINT: onChange={}
-            onChange={(e) => setCost(Number(e.target.value))}
+            onChange={(e) => {
+              let cost = Number(e.target.value);
+              // Note: If the cost value is NaN, change it to 0
+              if (isNaN(cost)) cost = 0;
+              setCost(cost);
+            }}
           ></input>
         </div>
         <div className="col-sm">
