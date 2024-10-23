@@ -10,6 +10,7 @@ interface AppContextType {
   setBudget: React.Dispatch<React.SetStateAction<number>>;
 }
 
+// Note: Budget was changed from 1000 to 1500 by updating context values
 const initialState: AppContextType = {
   expenses: [],
   setExpenses: () => {},
