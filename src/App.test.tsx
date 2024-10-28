@@ -42,7 +42,8 @@ test("Delete an Expense", () => {
   expect(newExpenseName).not.toBeInTheDocument();
   expect(newExpenseCost).not.toBeInTheDocument();
 
-  const remaining = screen.getByText("Remaining: $1500");
+  // WRONG TEST: Should be "Remaining: $1500"
+  const remaining = screen.getByText("Remaining: $1300");
   const spent = screen.getByText("Spent so far: $0");
   expect(remaining).toBeInTheDocument();
   expect(spent).toBeInTheDocument();
