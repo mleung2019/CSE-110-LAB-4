@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Expense } from "../../types/types";
 
+import { createExpense } from "../../utils/expense-utils";
+
 const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
   const { expenses, setExpenses } = useContext(AppContext);
@@ -22,9 +24,11 @@ const AddExpenseForm = () => {
     }
     const newExpense: Expense = {
       id: id.toString(),
-      name: name,
+      description: name,
       cost: cost,
     };
+
+    createExpense(newExpense);
     setExpenses([...expenses, newExpense]);
   };
 
