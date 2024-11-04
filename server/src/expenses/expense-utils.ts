@@ -19,7 +19,7 @@ export async function createExpenseServer(req: Request, res: Response, db: Datab
 	res.status(201).send({ id, description, cost });
 }
 
-export function deleteExpense(req: Request, res: Response, db: Database) {
+export async function deleteExpense(req: Request, res: Response, db: Database) {
 	// TO DO: Implement deleteExpense function
 	// for (let i = 0; i < expenses.length; i++) {
 	// 	if (expenses[i].id === req.params.id) {
@@ -27,8 +27,17 @@ export function deleteExpense(req: Request, res: Response, db: Database) {
 	// 	}
 	// }
 	// res.status(200).send("Delete Successful");
+  
 }
 
-export function getExpenses(req: Request, res: Response, db: Database) {
+export async function getExpenses(req: Request, res: Response, db: Database) {
 	// res.status(200).send({ data: expenses });
+  let expenses;
+  try {
+    expenses = await db.all("SELECT * FROM expenses");
+  } catch (error) {
+    return res.status(400).send({ error: `Could not get expenses, + ${error}` });
+  }
+
+  res.status(200).send({ data: expenses });
 }
