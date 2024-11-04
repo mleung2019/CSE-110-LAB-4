@@ -20,18 +20,16 @@ export async function createExpenseServer(req: Request, res: Response, db: Datab
 }
 
 export async function deleteExpense(req: Request, res: Response, db: Database) {
-	// TO DO: Implement deleteExpense function
-	// for (let i = 0; i < expenses.length; i++) {
-	// 	if (expenses[i].id === req.params.id) {
-	// 		expenses.splice(i, 1);
-	// 	}
-	// }
-	// res.status(200).send("Delete Successful");
-  
+  try {
+    await db.run("DELETE FROM expenses WHERE id = ?;", [req.params.id]);
+  } catch (error) {
+    return res.status(400).send({ error: `Expense could not be deleted, + ${error}` });
+  }
+
+  res.status(200).send("Delete Successful");
 }
 
 export async function getExpenses(req: Request, res: Response, db: Database) {
-	// res.status(200).send({ data: expenses });
   let expenses;
   try {
     expenses = await db.all("SELECT * FROM expenses");
